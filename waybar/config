@@ -1,0 +1,104 @@
+{    // --- GENERAL BAR CONFIGURATION ---
+    "layer": "top",
+    "position": "top",
+    "mod": "hide",
+    "height": 30,
+    "spacing": 4,
+    "margin" : 2,
+
+    // --- MODULE ORDER ---
+    "modules-left": [
+	//	"memory",
+       //	"custom/systemstats",
+        "hyprland/window"
+    ],
+    "modules-center": [
+	"clock"
+    ],
+    "modules-right": [
+	"pulseaudio",
+	"backlight",        
+        "battery",
+        "network",
+	
+    ],
+
+    // --- MODULE DEFINITIONS ---
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+	"format-icons": {
+    	    "active": "[■]",
+    	    "default": "[ ]",
+    	    "urgent": "[!]"
+ 	},
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+   },
+
+    "hyprland/window": {
+        "format": " # {} ",
+        "max-length": 128,
+        "tooltip": true
+    },
+
+"backlight": {
+    "device": "intel_backlight",
+    "format": "  {percent}"
+},
+
+"pulseaudio": {
+    "format": "  {volume}",
+    "format-muted": "Muted ",
+    "scroll-step": 5
+},
+
+
+    "clock": {
+        "interval": 60,
+        "format": "{:%I:%M %p}",
+        "tooltip-format": "{:%A, %d %B %Y}"
+    },
+
+    // --- ESSENTIAL RIGHT MODULES ---
+
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "RAM : {used}/{total} G",
+        "tooltip": true
+    },
+
+    "battery": {
+        "format": "{icon}  {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-full": "  {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "interval": 60,
+        "states": {
+            "warning": 15,
+            "critical": 5
+        }
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈷  Wired",
+        "format-disconnected": "󰖹  Off",
+        "tooltip-format": "{ifname}  {ipaddr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "custom/systemstats": {
+        "exec": "~/.config/waybar/scripts/systemstats.sh",
+        "interval": 3,
+        "return-type": "json",
+        "format": "󰢻 {usage}",
+        "tooltip": true,
+        "tooltip-format": "{tooltip}"
+    }
+}
